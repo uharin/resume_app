@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Resume App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.js"></script>
+    <script src="index.js" defer></script>
+    </head>
+
+
+
+  <body>
+    <div id="vue-app">
+
+<!-- =========================== -->
+<!-- NAV -->
+<!-- =========================== -->
+      <a href="/#/students">View Student Resumes</a>
+      <router-view></router-view>
+    
+    </div>
+  </body>
+</html>
+
+
+
+<template id="index-page">
+  <div class="vue-component container">
+    <div class="col-lg-6">
+      <div class="row">
+        <div class="card" style="width: 50rem;">
+          <img class="card-img-top" src="https://d2gg9evh47fn9z.cloudfront.net/800px_COLOURBOX4630795.jpg" alt="Card image cap">
+          <div class="card-block" v-for="student in students">
+            <h4 class="card-title"> Test<!-- {{student.name}} --> </h4>
+            <p class="card-text">{{student.firstName}}</p>
+            <p class="card-text">{{student.lastName}}</p>
+            <p class="card-text">{{student.email}}</p>
+            <p class="card-text">{{student.phoneNumber}}</p>
+            <p class="card-text">{{student.shortBio}}</p>
+            <p class="card-text">{{student.linkedInUrl}}</p>
+            <p class="card-text">{{student.twitterHandle}}</p>
+            <p class="card-text">{{student.personalBlog}}</p>
+            <p class="card-text">{{student.onlineResume}}</p>
+            <p class="card-text">{{student.githubUrl}}</p>
+            <!-- 
+              experience, education, skills, capstone -->
+            <div id="experience" v-for="experience in experiences">
+              <h2 class="card-title">{{ experience.companyName }}</h2>
+                <p class="card-text"> {{ experience.startDate }}</p>
+                <p class="card-text"> {{ experience.endDate }}</p>
+                <p class="card-text"> {{ experience.jobTitle }}</p>
+                <p class="card-text"> {{ experience.details }}</p>            
+            </div>
+            <div id="education" v-for= "education in educations">
+              <h2 class="card-title">{{ education.universityName }}</h2>
+                <p class="card-text"> {{ education.startDate }}</p>
+                <p class="card-text" v-if="isValidProductName(product)"> {{ education.endDate }}</p>
+                <p class="card-text"> {{ education.degree }}</p>
+                <p class="card-text"> {{ education.details }}</p>            
+            </div>
+            <div id="skills" v-for="skill in skills">
+              <p class="card-text"> {{ skill.skillName }} </p> 
+              <p class="card-text"> {{ skill.skillName }} </p>    
+            </div>
+            <div id="capstone" v-for="capstone in capstones">
+              <h2 class="card-title">{{ capstone.name }}</h2>
+                <p class="card-text"> {{ capstone.description }}</p>
+                <p class="card-text" v-if="isValidProductName(product)"> {{ capstone.url }}</p>
+                <p class="card-text"> {{ capstone.screenshot }}</p>
+            </div>  
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
